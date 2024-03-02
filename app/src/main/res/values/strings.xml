@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ChaseTest</string>
+    <string name="title">Planets</string>
 </resources>
