@@ -2,6 +2,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    kotlin("kapt")
+    alias(libs.plugins.daggerHilt)
 }
 
 android {
@@ -50,6 +52,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation(libs.core.ktx)
@@ -60,11 +63,51 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+
+    implementation(libs.daggerhilt)
+    androidTestImplementation(libs.androidx.runner)
+    kapt(libs.daggercompiler)
+    kapt(libs.androidx.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    // Room
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.paging)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
+    // Coil
+    implementation(libs.coil.compose)
+
+    // Extended Icons
+    implementation(libs.androidx.material.icons.extended)
+
+    // system UI Controller
+    implementation(libs.accompanist.systemuicontroller)
+
     testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
+    androidTestImplementation(libs.mockito.android)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
+    androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.hilt.android.compiler.v244)
+
+    testImplementation(libs.hilt.android.testing)
+    kaptTest(libs.hilt.android.compiler.v244)
+
+}
+
+kapt {
+    correctErrorTypes = true
 }
