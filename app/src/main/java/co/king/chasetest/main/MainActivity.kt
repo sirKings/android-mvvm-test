@@ -10,8 +10,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import co.king.chasetest.planetList.presentation.PlanetListScreen
 import co.king.chasetest.ui.theme.ChaseTestTheme
+import co.king.chasetest.util.Screen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,7 +31,26 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    PlanetListScreen()
+
+                    val navController = rememberNavController()
+
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.PlanetListScreen.route
+                    ) {
+                        composable(Screen.PlanetListScreen.route) {
+                            PlanetListScreen(navController)
+                        }
+
+                        composable(
+                            Screen.PlanetDetailScreen.route,
+                            arguments = listOf(
+                                navArgument("planetId") { type = NavType.IntType }
+                            )) {
+                            //PlanetDetailScreen(navController)
+                        }
+                    }
+
                 }
             }
         }

@@ -25,13 +25,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import co.king.chasetest.R
 import co.king.chasetest.planetList.presentation.components.PlanetView
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PlanetListScreen() {
+fun PlanetListScreen(navController: NavController) {
 
     val viewModel = hiltViewModel<PlanetListViewModel>()
     val state = viewModel.state.collectAsState()
@@ -60,7 +61,7 @@ fun PlanetListScreen() {
         ) {
             LazyColumn(modifier = Modifier.padding(16.dp)) {
                 items(state.value.planets.size){
-                    PlanetView(modifier = Modifier, item = state.value.planets[it])
+                    PlanetView(modifier = Modifier, item = state.value.planets[it], navController)
                     Spacer(modifier = Modifier.height(8.dp))
                     if(it == state.value.planets.size - 1){
                         viewModel.loadMorePlanets()

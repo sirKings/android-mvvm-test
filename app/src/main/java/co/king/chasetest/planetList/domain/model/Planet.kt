@@ -1,6 +1,7 @@
 package co.king.chasetest.planetList.domain.model
 
 data class Planet(
+    val id: Int,
     val name: String,
     val rotationPeriod: String,
     val orbitalPeriod: String,

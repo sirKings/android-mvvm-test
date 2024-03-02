@@ -1,6 +1,7 @@
 package co.king.chasetest.planetList.presentation.components
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,12 +20,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import co.king.chasetest.R
 import co.king.chasetest.planetList.domain.model.Planet
+import co.king.chasetest.util.Screen
 
 
 @Composable
-fun PlanetView(modifier: Modifier, item: Planet) {
+fun PlanetView(modifier: Modifier, item: Planet, navController: NavController) {
     val cardShape = RoundedCornerShape(size = 10.dp)
     Column(
         modifier = modifier
@@ -35,6 +39,9 @@ fun PlanetView(modifier: Modifier, item: Planet) {
                 shape = cardShape
             )
             .padding(8.dp)
+            .clickable {
+                navController.navigate(Screen.PlanetDetailScreen.route + "/${item.id}")
+            }
     ) {
 
         Text(text = item.name, fontWeight = FontWeight.Bold, fontSize = 32.sp)
@@ -65,6 +72,7 @@ fun PlanetView(modifier: Modifier, item: Planet) {
 @Composable
 fun PlanetViewPreview() {
     val planet = Planet(
+        1,
         "Earth",
         "365",
         "1",
@@ -80,5 +88,5 @@ fun PlanetViewPreview() {
         "https://swapi.dev/api/planets/1/"
     )
 
-    PlanetView(modifier = Modifier, item = planet)
+    PlanetView(modifier = Modifier, item = planet, rememberNavController())
 }

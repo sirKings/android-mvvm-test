@@ -17,5 +17,18 @@ fun PlanetDto.toPlanet(): Planet =
         residentsCount = residents.size,
         filmsCount = films.size,
         createdAt = created,
-        url = url
+        url = url,
+        id = getIdFromUrl(url)
     )
+
+private fun getIdFromUrl(url: String): Int{
+    //"https://swapi.dev/api/planets/2/"
+    return try {
+        val start = url.length - 2
+        val end = url.length -2
+        val char = url.slice(start..end)
+        char.toInt()
+    }catch (e: Exception){
+        0
+    }
+}
