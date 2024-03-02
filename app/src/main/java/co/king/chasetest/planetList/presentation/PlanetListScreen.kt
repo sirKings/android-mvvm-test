@@ -1,8 +1,10 @@
 package co.king.chasetest.planetList.presentation
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Divider
@@ -57,7 +59,7 @@ fun PlanetListScreen() {
             LazyColumn(modifier = Modifier.padding(16.dp)) {
                 items(state.value.planets.size){
                     PlanetView(modifier = Modifier, item = state.value.planets[it])
-                    Divider(modifier = Modifier.fillMaxWidth().padding(top = 4.dp, bottom = 4.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
             }
         }

@@ -7,6 +7,6 @@ import retrofit2.http.GET
 
 interface PlanetListApi {
 
-    @GET
+    @GET("planets")
     suspend fun fetchPlanetList(): Response<PlanetListResponse>
 }
