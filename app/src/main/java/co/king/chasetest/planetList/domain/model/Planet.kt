@@ -10,8 +10,8 @@ data class Planet(
     val terrain: String,
     val surfaceWater: String,
     val population: String,
-    val residents: List<String>,
-    val films: List<String>,
+    val residentsCount: Int,
+    val filmsCount: Int,
     val createdAt: String,
     val url: String
 )
