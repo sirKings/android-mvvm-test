@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ChaseTest</string>
     <string name="title">Planets</string>
+    <string name="population">Population:</string>
+    <string name="diameter">Diameter:</string>
+    <string name="climate">Climate:</string>
 </resources>

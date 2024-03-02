@@ -11,22 +11,36 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class PlanetListRepositoryImpl @Inject constructor(
-   val api: PlanetListApi
+    val api: PlanetListApi
 ) : PlanetListRepository {
-    override fun fetchPlanetList(): Flow<Resource<List<Planet>>> {
+    override fun fetchPlanetList(page: Int?): Flow<Resource<Pair<Int?, List<Planet>>>> {
         return flow {
             emit(Resource.Loading())
             val remoteResponse = try {
-                api.fetchPlanetList().body()
-            }catch (e: Exception){
+                api.fetchPlanetList(page).body()
+            } catch (e: Exception) {
                 e.printStackTrace()
-                emit(Resource.Failure(data = null, error = e.localizedMessage ?: "An error occurred"))
+                emit(
+                    Resource.Failure(
+                        data = null,
+                        error = e.localizedMessage ?: "An error occurred"
+                    )
+                )
                 return@flow
             }
             val planets = remoteResponse?.results?.map { it.toPlanet() }
             planets?.let {
-                emit(Resource.Success(data = it))
+                emit(Resource.Success(data = Pair(getPageQuery(remoteResponse.next), it)))
             }
+        }
+    }
+
+    private fun getPageQuery(link: String?): Int? {
+        val pageChar = link?.last()
+        return try {
+            pageChar?.digitToInt()
+        } catch (e: Exception) {
+            null
         }
     }
 }

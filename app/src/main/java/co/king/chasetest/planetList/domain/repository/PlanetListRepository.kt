@@ -5,5 +5,5 @@ import co.king.chasetest.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface PlanetListRepository {
-    fun fetchPlanetList(): Flow<Resource<List<Planet>>>
+    fun fetchPlanetList(page: Int?): Flow<Resource<Pair<Int?, List<Planet>>>>
 }

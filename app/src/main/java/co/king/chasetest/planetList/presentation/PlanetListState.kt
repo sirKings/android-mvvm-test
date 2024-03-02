@@ -4,6 +4,7 @@ import co.king.chasetest.planetList.domain.model.Planet
 
 data class PlanetListState(
     val loading: Boolean = false,
-    val planets: List<Planet> = emptyList(),
-    val error: String? = null
+    val planets: ArrayList<Planet> = arrayListOf(),
+    val error: String? = null,
+    val nextPage: Int? = 0
 )

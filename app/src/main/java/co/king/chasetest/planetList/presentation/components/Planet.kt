@@ -14,10 +14,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import co.king.chasetest.R
 import co.king.chasetest.planetList.domain.model.Planet
 
 
@@ -38,19 +40,19 @@ fun PlanetView(modifier: Modifier, item: Planet) {
         Text(text = item.name, fontWeight = FontWeight.Bold, fontSize = 32.sp)
         Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = modifier.fillMaxWidth()) {
             Row {
-                Text(text = "Climate:", fontSize = 16.sp)
+                Text(text = stringResource(id = R.string.climate), fontSize = 16.sp)
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(text = item.climate, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
             Row {
-                Text(text = "Diameter:", fontSize = 16.sp)
+                Text(text = stringResource(id = R.string.diameter), fontSize = 16.sp)
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(text = item.diameter, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
         }
         Row(horizontalArrangement = Arrangement.SpaceBetween,modifier = modifier.fillMaxWidth()) {
             Row {
-                Text(text = "Population:", fontSize = 16.sp)
+                Text(text = stringResource(id = R.string.population), fontSize = 16.sp)
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(text = item.population, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }

@@ -60,6 +60,9 @@ fun PlanetListScreen() {
                 items(state.value.planets.size){
                     PlanetView(modifier = Modifier, item = state.value.planets[it])
                     Spacer(modifier = Modifier.height(8.dp))
+                    if(it == state.value.planets.size - 1){
+                        viewModel.loadMorePlanets()
+                    }
                 }
             }
         }
