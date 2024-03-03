@@ -1,5 +1,9 @@
 package co.king.chasetest.di
 
+import android.app.Application
+import androidx.room.Room
+import co.king.chasetest.planetList.data.local.PlanetDao
+import co.king.chasetest.planetList.data.local.PlanetDatabase
 import co.king.chasetest.planetList.data.remote.PlanetListApi
 import dagger.Module
 import dagger.Provides
@@ -37,5 +41,17 @@ object AppModule {
             .build()
             .create()
 
+
+    @Provides
+    @Singleton
+    fun provideDatabase(app: Application): PlanetDatabase =
+        Room.databaseBuilder(
+            app, PlanetDatabase::class.java,
+            "planet.db"
+        ).build()
+
+    @Provides
+    @Singleton
+    fun provideCurrencyDao(db: PlanetDatabase): PlanetDao = db.planetDao
 
 }

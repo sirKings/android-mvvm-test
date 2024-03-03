@@ -82,8 +82,8 @@ fun PlanetViewPreview() {
         "Plain",
         "Lot",
         "1 billion",
-        10,
-        20,
+        emptyList(),
+        emptyList(),
         "2014-12-09T13:50:49.641000Z",
         "https://swapi.dev/api/planets/1/"
     )

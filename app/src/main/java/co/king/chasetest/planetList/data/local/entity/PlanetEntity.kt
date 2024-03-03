@@ -1,6 +1,11 @@
-package co.king.chasetest.planetList.domain.model
+package co.king.chasetest.planetList.data.local.entity
 
-data class Planet(
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity("planet")
+data class PlanetEntity(
+    @PrimaryKey
     val id: Int,
     val name: String,
     val rotationPeriod: String,
@@ -11,8 +16,8 @@ data class Planet(
     val terrain: String,
     val surfaceWater: String,
     val population: String,
-    val residents: List<String>,
-    val films: List<String>,
+    val residents: String,
+    val films: String,
     val createdAt: String,
     val url: String
 )
