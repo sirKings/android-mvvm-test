@@ -2,6 +2,7 @@ package co.king.chasetest.di
 
 import android.app.Application
 import androidx.room.Room
+import co.king.chasetest.planetDetail.data.remote.PlanetDetailApi
 import co.king.chasetest.planetList.data.local.PlanetDao
 import co.king.chasetest.planetList.data.local.PlanetDatabase
 import co.king.chasetest.planetList.data.remote.PlanetListApi
@@ -34,6 +35,16 @@ object AppModule {
     @Singleton
     @Provides
     fun providePlanetListApi(): PlanetListApi =
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+            .create()
+
+    @Singleton
+    @Provides
+    fun providePlanetDetailApi(): PlanetDetailApi =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

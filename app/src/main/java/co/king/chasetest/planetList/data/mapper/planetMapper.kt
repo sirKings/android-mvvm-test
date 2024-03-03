@@ -3,6 +3,7 @@ package co.king.chasetest.planetList.data.mapper
 import co.king.chasetest.planetList.data.local.entity.PlanetEntity
 import co.king.chasetest.planetList.data.remote.dto.PlanetDto
 import co.king.chasetest.planetList.domain.model.Planet
+import co.king.chasetest.util.getIdFromUrl
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -59,16 +60,3 @@ fun PlanetEntity.toPlanet() = Planet(
     url
 )
 
-private fun getIdFromUrl(url: String): Int {
-    //"https://swapi.dev/api/planets/2/"
-    val pattern = Regex("""/(\d+)/[^/]*$""")
-    val matchResult = pattern.find(url)
-
-    return if (matchResult != null) {
-        val lastGroup = matchResult.groupValues.lastOrNull()
-        lastGroup?.toInt() ?: 0
-    } else {
-        0
-    }
-
-}
