@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface PlanetListRepository {
     fun fetchPlanetList(page: Int?): Flow<Resource<Pair<Int?, List<Planet>>>>
+
+    fun fetchPlanet(id: Int): Flow<Resource<Planet>>
 }

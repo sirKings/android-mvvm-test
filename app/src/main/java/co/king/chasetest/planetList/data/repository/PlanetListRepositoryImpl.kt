@@ -47,6 +47,15 @@ class PlanetListRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun fetchPlanet(id: Int): Flow<Resource<Planet>> {
+        return flow {
+            val planet = planetDao.getPlanet(id)
+            planet?.let {
+                emit(Resource.Success(data = it.toPlanet()))
+            }
+        }
+    }
+
     private fun getPageQuery(link: String?): Int? {
         val pageChar = link?.last()
         return try {
