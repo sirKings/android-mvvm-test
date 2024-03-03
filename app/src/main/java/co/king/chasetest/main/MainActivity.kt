@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import co.king.chasetest.planetDetail.presentation.PlanetDetailScreen
 import co.king.chasetest.planetList.presentation.PlanetListScreen
 import co.king.chasetest.ui.theme.ChaseTestTheme
 import co.king.chasetest.util.Screen
@@ -43,17 +44,21 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(
-                            Screen.PlanetDetailScreen.route,
+                            Screen.PlanetDetailScreen.route +"/{$PLANET_ID}",
                             arguments = listOf(
-                                navArgument("planetId") { type = NavType.IntType }
+                                navArgument(PLANET_ID) { type = NavType.IntType }
                             )) {
-                            //PlanetDetailScreen(navController)
+                            PlanetDetailScreen()
                         }
                     }
 
                 }
             }
         }
+    }
+
+    companion object{
+        const val PLANET_ID = "planetId"
     }
 }
 

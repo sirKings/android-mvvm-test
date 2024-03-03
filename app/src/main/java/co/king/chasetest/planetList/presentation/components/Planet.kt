@@ -45,7 +45,7 @@ fun PlanetView(modifier: Modifier, item: Planet, navController: NavController) {
     ) {
 
         Text(text = item.name, fontWeight = FontWeight.Bold, fontSize = 32.sp)
-        Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = modifier.fillMaxWidth()) {
+        Column(modifier = modifier.fillMaxWidth()) {
             Row {
                 Text(text = stringResource(id = R.string.climate), fontSize = 16.sp)
                 Spacer(modifier = Modifier.width(10.dp))
@@ -56,8 +56,6 @@ fun PlanetView(modifier: Modifier, item: Planet, navController: NavController) {
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(text = item.diameter, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
-        }
-        Row(horizontalArrangement = Arrangement.SpaceBetween,modifier = modifier.fillMaxWidth()) {
             Row {
                 Text(text = stringResource(id = R.string.population), fontSize = 16.sp)
                 Spacer(modifier = Modifier.width(10.dp))

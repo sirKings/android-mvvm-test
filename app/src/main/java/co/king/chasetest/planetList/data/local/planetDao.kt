@@ -13,4 +13,7 @@ interface PlanetDao {
 
     @Query("select * from planet order by id")
     fun observePlanetList(): List<PlanetEntity>
+
+    @Query("select * from planet where id=:id")
+    fun getPlanet(id: Int): PlanetEntity?
 }
