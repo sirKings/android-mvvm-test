@@ -1,6 +1,8 @@
 package co.king.chasetest.planetDetail.data.repository
 
+import co.king.chasetest.planetDetail.data.local.dao.FilmDao
 import co.king.chasetest.planetDetail.data.mapper.toFilm
+import co.king.chasetest.planetDetail.data.mapper.toFilmEntity
 import co.king.chasetest.planetDetail.data.remote.PlanetDetailApi
 import co.king.chasetest.planetDetail.domain.model.Film
 import co.king.chasetest.planetDetail.domain.repository.FilmRepository
@@ -15,6 +17,7 @@ import javax.inject.Inject
 class FilmRepositoryImpl @Inject constructor(
     val planetDao: PlanetDao,
     val api: PlanetDetailApi,
+    val filmDao: FilmDao
 ) : FilmRepository {
     override fun getFilm(id: Int): Flow<Resource<Film>> {
         return flow {
@@ -24,10 +27,15 @@ class FilmRepositoryImpl @Inject constructor(
                     api.getFilm(getIdFromUrl(it)).body()
                 } catch (e: Exception) {
                     e.printStackTrace()
+                    val localData = filmDao.getFilmList(id)
+                    localData.map { f ->
+                        emit(Resource.Success(data = f.toFilm()))
+                    }
                     return@flow
                 }
 
                 film?.let { f ->
+                    filmDao.saveFilm(f.toFilmEntity(id))
                     emit(Resource.Success(data = f.toFilm()))
                 }
             }

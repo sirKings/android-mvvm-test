@@ -1,5 +1,6 @@
 package co.king.chasetest.planetDetail.data.mapper
 
+import co.king.chasetest.planetDetail.data.local.entity.FilmEntity
 import co.king.chasetest.planetDetail.data.remote.dto.FilmDto
 import co.king.chasetest.planetDetail.data.remote.dto.ResidentDto
 import co.king.chasetest.planetDetail.domain.model.Film
@@ -32,4 +33,21 @@ fun ResidentDto.toResident() =
         gender,
         url
     )
+
+fun FilmDto.toFilmEntity(planetId: Int) =
+    FilmEntity(
+        id = getIdFromUrl(url),
+        title,
+        episodeId = episode_id,
+        openingCrawl = opening_crawl,
+        director,
+        producer,
+        releaseDate = release_date,
+        url,
+        planetId
+)
+
+fun FilmEntity.toFilm() = Film(
+    id, title, episodeId, openingCrawl, director, producer, releaseDate, url
+)
 
