@@ -38,22 +38,12 @@ fun Item(item: Any) {
     ) {
         if(item is Film){
             Column {
-                Text(text = item.title, fontWeight = FontWeight.Bold, fontSize = 32.sp)
-
-                Row {
-                    Text(text = stringResource(id = R.string.director), fontSize = 16.sp)
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text(text = item.director, fontWeight = FontWeight.Bold, fontSize = 16.sp)
-                }
-                Row {
-                    Text(text = stringResource(id = R.string.open), fontSize = 16.sp)
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text(text = item.openingCrawl, fontWeight = FontWeight.Bold, fontSize = 16.sp)
-                }
+                Text(text = item.title, fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                Text(text = item.openingCrawl, fontSize = 16.sp, maxLines = 4)
             }
         }else if( item is Resident){
             Column {
-                Text(text = item.name, fontWeight = FontWeight.Bold, fontSize = 32.sp)
+                Text(text = item.name, fontWeight = FontWeight.Bold, fontSize = 20.sp)
 
                 Row {
                     Text(text = stringResource(id = R.string.gender), fontSize = 16.sp)

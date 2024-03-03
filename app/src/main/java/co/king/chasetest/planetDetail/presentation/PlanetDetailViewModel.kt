@@ -4,6 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.king.chasetest.main.MainActivity.Companion.PLANET_ID
+import co.king.chasetest.planetDetail.domain.model.Film
+import co.king.chasetest.planetDetail.domain.model.Resident
 import co.king.chasetest.planetDetail.domain.repository.FilmRepository
 import co.king.chasetest.planetDetail.domain.repository.ResidentRepository
 import co.king.chasetest.planetList.domain.repository.PlanetListRepository
@@ -28,7 +30,59 @@ class PlanetDetailViewModel @Inject constructor(
 
     init {
         val id = savedStateHandle.get<Int>(PLANET_ID)
-        id?.let { fetchPlanet(it) }
+        id?.let {
+            fetchPlanet(it)
+            fetchFilms(it)
+            fetchResidents(it)
+        }
+    }
+
+    private fun fetchResidents(id: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            residentRepository.getResident(id).collect {
+                when (it) {
+                    is Resource.Loading -> {
+                    }
+
+                    is Resource.Failure -> {
+                    }
+
+                    is Resource.Success -> {
+                        _state.update { planetDetailsState ->
+                            val items = arrayListOf<Resident>()
+                            items.addAll(
+                                planetDetailsState.residents)
+                            items.add(it.data)
+                            planetDetailsState.copy(residents = items)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun fetchFilms(id: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            filmRepository.getFilm(id).collect {
+                when (it) {
+                    is Resource.Loading -> {
+                    }
+
+                    is Resource.Failure -> {
+                    }
+
+                    is Resource.Success -> {
+                        _state.update { planetDetailsState ->
+                            val items = arrayListOf<Film>()
+                            items.addAll(
+                                planetDetailsState.films)
+                            items.add(it.data)
+                            planetDetailsState.copy(films = items)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun fetchPlanet(id: Int) {
