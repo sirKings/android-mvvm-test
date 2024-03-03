@@ -18,9 +18,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PlanetDetailViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
-//    private val filmRepository: FilmRepository,
-//    private val residentRepository: ResidentRepository,
+    savedStateHandle: SavedStateHandle,
+    private val filmRepository: FilmRepository,
+    private val residentRepository: ResidentRepository,
     private val planetListRepository: PlanetListRepository
 ) : ViewModel() {
     private val _state = MutableStateFlow(PlanetDetailState())

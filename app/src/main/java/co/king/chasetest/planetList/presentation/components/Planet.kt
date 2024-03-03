@@ -28,7 +28,7 @@ import co.king.chasetest.util.Screen
 
 
 @Composable
-fun PlanetView(modifier: Modifier, item: Planet, navController: NavController) {
+fun PlanetView(modifier: Modifier, item: Planet, navController: NavController?) {
     val cardShape = RoundedCornerShape(size = 10.dp)
     Column(
         modifier = modifier
@@ -40,12 +40,12 @@ fun PlanetView(modifier: Modifier, item: Planet, navController: NavController) {
             )
             .padding(8.dp)
             .clickable {
-                navController.navigate(Screen.PlanetDetailScreen.route + "/${item.id}")
+                navController?.navigate(Screen.PlanetDetailScreen.route + "/${item.id}")
             }
     ) {
 
         Text(text = item.name, fontWeight = FontWeight.Bold, fontSize = 32.sp)
-        Column(modifier = modifier.fillMaxWidth()) {
+
             Row {
                 Text(text = stringResource(id = R.string.climate), fontSize = 16.sp)
                 Spacer(modifier = Modifier.width(10.dp))
@@ -61,7 +61,7 @@ fun PlanetView(modifier: Modifier, item: Planet, navController: NavController) {
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(text = item.population, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
-        }
+
     }
 }
 

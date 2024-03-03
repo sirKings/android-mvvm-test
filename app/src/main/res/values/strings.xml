@@ -4,4 +4,8 @@
     <string name="population">Population:</string>
     <string name="diameter">Diameter:</string>
     <string name="climate">Climate:</string>
+    <string name="director">Director:</string>
+    <string name="open">Open Crawl:</string>
+    <string name="gender">Gender:</string>
+    <string name="height">Height:</string>
 </resources>
