@@ -37,7 +37,7 @@ class FilmRepositoryImplTest {
     @Test
     fun `Given successful network call, getFilm should return a Film`() = runBlocking {
         val testStub = Gson().toJson(listOf("https://swapi.dev/api/film/2/"))
-        val r = FilmDto("Test", 2, "", "", "", "", "https://swapi.dev/api/people/2/")
+        val r = FilmDto("Test", 2, "", "", "", "", "https://swapi.dev/api/film/2/")
         val p = PlanetEntity(
             2,
             "Test", "", "", "", "", "", "", "", "",

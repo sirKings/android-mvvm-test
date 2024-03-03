@@ -25,6 +25,7 @@ class PlanetDetailViewModel @Inject constructor(
     private val residentRepository: ResidentRepository,
     private val planetListRepository: PlanetListRepository
 ) : ViewModel() {
+
     private val _state = MutableStateFlow(PlanetDetailState())
     val state = _state.asStateFlow()
 
