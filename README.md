@@ -19,7 +19,7 @@ You can connect with me here:
 2. **domain**: Dependency providing classes.
 3. **presentation**: View classes along with their corresponding ViewModel and state.
 4. **utils**: Utility classes.
-5. **core**: Entry package
+5. **Main**: Entry package
 
 #### Classes have been designed in such a way that it could be inherited and maximize the code reuse.
 
