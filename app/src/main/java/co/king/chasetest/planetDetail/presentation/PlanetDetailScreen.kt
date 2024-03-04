@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -37,6 +38,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import co.king.chasetest.R
 import co.king.chasetest.planetDetail.presentation.component.ItemList
 import co.king.chasetest.planetList.presentation.components.PlanetView
+import co.king.chasetest.util.TestTags
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -79,7 +81,8 @@ fun PlanetDetailScreen() {
                         Tab(
                             text = { Text(title) },
                             selected = tabIndex == index,
-                            onClick = { tabIndex = index }
+                            onClick = { tabIndex = index },
+                            modifier = Modifier.testTag(if (index==0) TestTags.PLANET_RESIDENT_TAG else TestTags.PLANET_FILM_TAG )
                         )
                     }
                 }

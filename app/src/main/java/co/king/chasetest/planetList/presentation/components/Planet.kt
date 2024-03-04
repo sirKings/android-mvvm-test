@@ -25,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import co.king.chasetest.R
 import co.king.chasetest.planetList.domain.model.Planet
 import co.king.chasetest.util.Screen
+import co.king.chasetest.util.TestTags
 
 
 @Composable
@@ -39,15 +40,16 @@ fun PlanetView(modifier: Modifier, item: Planet, navController: NavController?) 
                 shape = cardShape
             )
             .padding(8.dp)
+            .testTag(TestTags.PLANET_TAG)
             .clickable {
                 navController?.navigate(Screen.PlanetDetailScreen.route + "/${item.id}")
             }
     ) {
 
-        Text(text = item.name, fontWeight = FontWeight.Bold, fontSize = 32.sp)
+        Text(text = item.name, fontWeight = FontWeight.Bold, fontSize = 32.sp, modifier = Modifier.testTag(TestTags.PLANET_TITLE_TAG))
 
             Row {
-                Text(text = stringResource(id = R.string.climate), fontSize = 16.sp)
+                Text(text = stringResource(id = R.string.climate), fontSize = 16.sp, modifier = Modifier.testTag(TestTags.PLANET_CLIMATE_TAG))
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(text = item.climate, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }

@@ -28,6 +28,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import co.king.chasetest.R
 import co.king.chasetest.planetList.presentation.components.PlanetView
+import co.king.chasetest.util.TestTags
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,7 +60,7 @@ fun PlanetListScreen(navController: NavController) {
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            LazyColumn(modifier = Modifier.padding(16.dp)) {
+            LazyColumn(modifier = Modifier.padding(16.dp).testTag(TestTags.PLANET_LIST_TAG)) {
                 items(state.value.planets.size){
                     PlanetView(modifier = Modifier, item = state.value.planets[it], navController)
                     Spacer(modifier = Modifier.height(8.dp))
